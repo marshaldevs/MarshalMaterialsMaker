@@ -7,5 +7,8 @@ import retrofit2.http.POST;
 public interface IMarshalService {
     // TODO
     @POST(MarshalServiceProvider.POST_MATERIAL)
-    Call<MaterialItem> postRating(@Body MaterialItem materialItem);
+    Call<MaterialItem> postMaterial(@Body MaterialItem materialItem);
+
+    @POST(MarshalServiceProvider.POST_PUSH_UPDATE)
+    Call postUpdatePush();
 }

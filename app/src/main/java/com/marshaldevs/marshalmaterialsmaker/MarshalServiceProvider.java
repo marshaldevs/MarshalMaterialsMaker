@@ -20,6 +20,7 @@ public class MarshalServiceProvider {
     // TODO
     private static final String MARSHAL_BASE_URL = "http://marshalweb.azurewebsites.net/api/";
     public static final String POST_MATERIAL = MARSHAL_BASE_URL + "materials/";
+    public static final String POST_PUSH_UPDATE = MARSHAL_BASE_URL + "/gcm/sendPush/date-update-true";
 
     private static IMarshalService service;
     

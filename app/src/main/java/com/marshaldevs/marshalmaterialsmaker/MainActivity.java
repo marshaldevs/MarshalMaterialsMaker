@@ -3,6 +3,7 @@ package com.marshaldevs.marshalmaterialsmaker;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.SearchView;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -16,6 +17,8 @@ import com.leocardz.link.preview.library.LinkPreviewCallback;
 import com.leocardz.link.preview.library.SourceContent;
 import com.leocardz.link.preview.library.TextCrawler;
 import com.squareup.picasso.Picasso;
+
+import java.io.IOException;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -128,7 +131,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 mMaterialItem.setTags(mCardHashTags.getText().toString());
-                MarshalServiceProvider.getInstance().postRating(mMaterialItem).enqueue(new Callback<MaterialItem>() {
+                MarshalServiceProvider.getInstance().postMaterial(mMaterialItem).enqueue(new Callback<MaterialItem>() {
                     @Override
                     public void onResponse(Call<MaterialItem> call, Response<MaterialItem> response) {
                         if(response.isSuccessful()) {
@@ -136,6 +139,12 @@ public class MainActivity extends AppCompatActivity {
                             cleanScreen();
                         } else {
                             Toast.makeText(MainActivity.this, "Failed", Toast.LENGTH_LONG).show();
+                            try {
+                                Log.i("ERROR",response.errorBody().string());
+                                Log.i("ERROR",response.message());
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
                         }
                     }
 
